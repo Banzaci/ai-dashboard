@@ -8,11 +8,25 @@ import { Input } from "../components/Input"
 import { Button } from "../components/Button"
 
 export default function Login() {
-  const { register, handleSubmit } = useForm<FormData>()
-
+  const {
+      register,
+      handleSubmit,
+      setError,
+      formState: { errors }
+    } = useForm<FormData>()
+  
   async function onSubmit(data: FormData) {
-    const res = await loginAction(data)
-    localStorage.setItem("token", res.access_token)
+    try {
+      const result = await loginAction(data)
+      if (result.error) {
+        setError("form", { message: result.error })
+      }
+    } catch {
+      setError("root", {
+        type: "server",
+        message: "Server error"
+      });
+    }
   }
 
   return (
@@ -25,13 +39,17 @@ export default function Login() {
           placeholder="Email"
           {...register("email")}
           className="border p-2 w-full"
+          value="test@example.com"
         />
         <Input
           type="password"
           placeholder="Password"
           {...register("password")}
           className="border p-2 w-full"
+          value="password123"
         />
+        {errors.form && <p>{errors.form.message}</p>}
+        {errors.root && <p>{errors.root.message}</p>}
         <Button className="bg-black text-white w-full p-2">
           Login
         </Button>

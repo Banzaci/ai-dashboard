@@ -1,4 +1,5 @@
 'use client'
+import { PromptProvider } from '@/providers/PromptProvider';
 import './globals.css';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import Head from 'next/head';
@@ -14,9 +15,11 @@ export default function PageWrapperProviders({ children }: { children: React.Rea
       </Head>
       <body>
         <QueryClientProvider client={queryClient}>
+          <PromptProvider>
           <div className='min-h-screen flex flex-col'>
             {children}
           </div>
+          </PromptProvider>
         </QueryClientProvider>
       </body>
     </html>
