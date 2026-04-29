@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <PageWrapperProviders>
-      <main className="flex flex-col flex-1 max-w-7xl px-4 sm:px-6 lg:px-8 pt-30 mx-auto">
+      <main>
         {children}
       </main>
       <Toaster position="top-right" />

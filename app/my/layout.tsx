@@ -2,6 +2,7 @@ import { Toaster } from "react-hot-toast";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import LogOut from "../components/LogOut";
+import MyNavigation from "./MyNavigation";
 
 export default async function ProtectedLayout({ children }: { children: React.ReactNode }) {
   const cookieStore = await cookies();
@@ -12,7 +13,8 @@ export default async function ProtectedLayout({ children }: { children: React.Re
   }
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex flex-col flex-1 max-w-7xl px-4 sm:px-6 lg:px-8 pt-30 mx-auto">
+      <MyNavigation />
+      <main className="flex flex-col flex-1 px-4 sm:px-6 lg:px-8">
         {children}
       </main>
       <LogOut />
