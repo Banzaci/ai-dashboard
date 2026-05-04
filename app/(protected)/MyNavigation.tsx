@@ -9,8 +9,8 @@ export default function MyNavigation() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const links = [
-    { href: "/", label: "Home" },
-    { href: "/my/profile", label: "Profile" },
+    { href: "/dashboard", label: "Home" },
+    { href: "/profile", label: "Profile" },
   ];
   return (
     <nav aria-label="My navigation">

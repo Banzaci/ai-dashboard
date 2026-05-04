@@ -1,6 +1,5 @@
 "use server"
-import { cookies } from "next/headers"
-import { redirect } from "next/navigation"
+
 import { FormData } from "./types"
 
 export async function loginAction(data: FormData) {
@@ -9,19 +8,14 @@ export async function loginAction(data: FormData) {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify(data),
   })
-  const result = await res.json()
+  const result = await res.json();
   if (!res.ok) {
     return {
       error: result.error || "An error occurred during login",
     }
   }
-  (await cookies()).set("token", result.access_token, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "lax"
-  })
-
-  redirect("/my")
+  return result;
 }

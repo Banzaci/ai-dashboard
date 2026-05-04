@@ -6,6 +6,7 @@ import { FormData } from "../actions/types"
 import Link from "next/link"
 import { Input } from "../components/Input"
 import { Button } from "../components/Button"
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const {
@@ -14,12 +15,16 @@ export default function Login() {
       setError,
       formState: { errors }
     } = useForm<FormData>()
-  
+  const router = useRouter();
   async function onSubmit(data: FormData) {
     try {
       const result = await loginAction(data)
       if (result.error) {
         setError("form", { message: result.error })
+      }
+      if (result.access_token) {  
+        localStorage.setItem("token", result.access_token);
+        router.push("/dashboard");
       }
     } catch {
       setError("root", {

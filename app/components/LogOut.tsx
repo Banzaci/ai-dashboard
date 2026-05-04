@@ -1,14 +1,18 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { usePrompt } from "@/providers/PromptProvider";
-import { adminLogout } from "../actions/adminLogout";
 
 export default function LogOut() {
   const { showPrompt } = usePrompt();
+  const router = useRouter();
   async function handleLogout() {
     showPrompt({
       message: "Are you sure you want to log out?",
-      onConfirm: async () =>  await adminLogout()
+      onConfirm: async () =>  {
+        localStorage.removeItem("token");
+        router.push("/login");
+      }
     })
   }
 

@@ -5,11 +5,11 @@ import PageWrapperProviders from "./PageWrapperProviders";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://laughinggoatghana.com"),
-  title: "Laughing Goat Lodge – Busua Beach, Ghana",
+  title: "Dashboard",
   description:
     "Beachfront lodge in Busua, Ghana. Stay close to the ocean, surfing, and local fishing village life on beautiful Busua Beach.",
   openGraph: {
-    title: "Laughing Goat Lodge – Busua Beach, Ghana",
+    title: "Dashboard",
     description:
       "Relax at Laughing Goat Lodge in Busua, Ghana. A laid-back beach lodge near the ocean, surfing, and vibrant local culture.",
     url: "https://laughinggoatghana.com",
